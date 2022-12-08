@@ -1,58 +1,54 @@
 import { StatusBar } from "expo-status-bar"
-import { StyleSheet, Platform, ImageBackground } from "react-native"
+import { StyleSheet, ImageBackground } from "react-native"
 import { NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 
 import CategoriesScreen from "./screens/CategoriesScreen"
 import MealsOverViewScreen from "./screens/MealsOverViewScreen"
+import MealDetailsScreen from "./screens/MealDetailsScreen"
 
 const Stack = createNativeStackNavigator()
 
 export default function App() {
   return (
     <>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator
+          screenOptions={{
+            headerTintColor: "white",
+            headerTitleStyle: {
+              color: "white",
+              fontWeight: "bold",
+            },
+            headerBackground: () => (
+              <ImageBackground
+                style={[StyleSheet.absoluteFill, { opacity: 0.3 }]}
+                source={require("./assets/images/navbg.jpg")}
+              />
+            ),
+          }}
+        >
           <Stack.Screen
             name="MealsCategories"
             component={CategoriesScreen}
             options={{
               title: "All Categories",
-              animation: "slide_from_left",
-              headerTintColor: "white",
-              headerTitleStyle: {
-                color: "white",
-                fontWeight: "bold",
-              },
-              // contentStyle: { backgroundColor: "#351401" },
-              headerBackground: () => (
-                <ImageBackground
-                  style={[StyleSheet.absoluteFill, { opacity: 0.3 }]}
-                  source={require("./assets/images/navbg.jpg")}
-                />
-              ),
+              animation: "fade",
             }}
           />
           <Stack.Screen
             name="MealsOverview"
             component={MealsOverViewScreen}
-            options={{
-              title: "Recipe",
-              animation: "slide_from_right",
-              headerTintColor: "white",
-              headerTitleStyle: {
-                color: "white",
-                fontWeight: "bold",
-              },
-              headerBackground: () => (
-                <ImageBackground
-                  style={[StyleSheet.absoluteFill, { opacity: 0.3 }]}
-                  source={require("./assets/images/navbg.jpg")}
-                />
-              ),
-            }}
+            // you can get params via otoins too
+            // options={({ route, navigation }) => {
+            //   const catId = route.params.categoryId
+            //   return {
+            //     title: catId,
+            //   }
+            // }}
           />
+          <Stack.Screen name="MealDetails" component={MealDetailsScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </>

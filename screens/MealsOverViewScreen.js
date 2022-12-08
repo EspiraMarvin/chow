@@ -3,6 +3,8 @@ import { MEALS } from "../data/dummy-data"
 
 import { View, FlatList, StyleSheet } from "react-native"
 import MealItem from "../components/MealItem"
+import { LinearGradient } from "expo-linear-gradient"
+import Gradient from "../components/ui/Gradient"
 
 export default function MealsOverViewScreen({ route }) {
   //   const route = useRoute()
@@ -25,13 +27,15 @@ export default function MealsOverViewScreen({ route }) {
   }
 
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={displayedMeals}
-        keyExtractor={(item) => item.id}
-        renderItem={renderMealItem}
-      />
-    </View>
+    <Gradient>
+      <View style={styles.container}>
+        <FlatList
+          data={displayedMeals}
+          keyExtractor={(item) => item.id}
+          renderItem={renderMealItem}
+        />
+      </View>
+    </Gradient>
   )
 }
 

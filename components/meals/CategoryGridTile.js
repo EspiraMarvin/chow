@@ -1,6 +1,6 @@
 import { View, Pressable, Text, StyleSheet, Platform } from "react-native"
 import { useNavigation } from "@react-navigation/native"
-import Shadow from "./ui/Shadow"
+import Shadow from "../ui/Shadow"
 
 export default function CategoryGridTile({ title, color, onPress }) {
   const navigation = useNavigation()

@@ -1,22 +1,16 @@
-import { useLayoutEffect, useState } from "react"
-import {
-  Text,
-  StyleSheet,
-  View,
-  FlatList,
-  Image,
-  ImageBackground,
-} from "react-native"
+import { useLayoutEffect } from "react"
+import { Text, StyleSheet, View, Image, ScrollView } from "react-native"
 import Shadow from "../components/ui/Shadow"
 import { MEALS } from "../data/dummy-data"
 import Gradient from "../components/ui/Gradient"
+import MealDetails from "../components/meals/MealDetails"
+import SubTitle from "../components/mealDetail/SubTitle"
+import List from "../components/mealDetail/List"
 
 export default function MealDetailsScreen({ route, navigation }) {
   const mealId = route.params.mealId
-  const [ti, setTi] = useState("")
-  const [details, setDetails] = useState({})
 
-  const mealDetails = MEALS.find((meal) => meal.id === mealId)
+  const selectedMeal = MEALS.find((meal) => meal.id === mealId)
 
   useLayoutEffect(() => {
     const mealTitle = MEALS.find((meal) => meal.id === mealId).title
@@ -24,41 +18,46 @@ export default function MealDetailsScreen({ route, navigation }) {
       title: mealTitle,
       animation: "slide_from_right",
     })
-    setTi(mealTitle)
   }, [mealId, navigation])
 
-  //   console.log("mealDetails", mealDetails.imageUrl)
-
   return (
-    <Gradient>
-      <Shadow>
-        <Image
-          resizeMode="contain"
-          style={{ height: 300, width: "100%" }}
-          source={{ uri: mealDetails.imageUrl }}
-        />
-        <View style={styles.container}>
-          <Text>{ti}</Text>
-          <Text>{mealDetails.affordability}</Text>
-          <Text>{mealDetails.categoryIds}</Text>
-          <Text>{mealDetails.duration}</Text>
-          <Text>
-            isGlutenFree {mealDetails.isGlutenFree ? "true" : "false"}
-          </Text>
-          <Text>isVegan {mealDetails.isVegan ? "true" : "false"}</Text>
-          <Text>isVegetarian{mealDetails.isVegetarian ? "true" : "false"}</Text>
-          <Text>
-            isLactoseFree{mealDetails.isLactoseFree ? "true" : "false"}
-          </Text>
-        </View>
-      </Shadow>
-    </Gradient>
+    <ScrollView>
+      <Gradient>
+        <Shadow>
+          <Image style={styles.image} source={{ uri: selectedMeal.imageUrl }} />
+          <View style={styles.container}>
+            <Text style={styles.title}>{selectedMeal.title}</Text>
+
+            <MealDetails
+              duration={selectedMeal.duration}
+              affordability={selectedMeal.affordability}
+              complexity={selectedMeal.complexity}
+              style={{ backgroundColor: "#ccc" }}
+            />
+
+            <SubTitle>Ingredients</SubTitle>
+            <List data={selectedMeal.ingredients} />
+            <SubTitle>Steps</SubTitle>
+            <List data={selectedMeal.steps} />
+          </View>
+        </Shadow>
+      </Gradient>
+    </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: 16,
+    paddingBottom: 12,
+  },
+  image: {
+    height: 300,
+    width: "100%",
+  },
+  title: {
+    fontWeight: "bold",
+    fontSize: 24,
+    margin: 8,
+    textAlign: "center",
   },
 })

@@ -1,56 +1,64 @@
-import {
-  Text,
-  View,
-  Image,
-  StyleSheet,
-  Pressable,
-  FlatList,
-} from "react-native"
+import { Text, View, Image, StyleSheet, Pressable } from "react-native"
+import Shadow from "./ui/Shadow"
 
-export default function MealItem({ mealDetails }) {
-  //   console.log(mealDetails.affordability)
+export default function MealItem({
+  title,
+  imageUrl,
+  duration,
+  affordability,
+  complexity,
+}) {
   return (
-    <View style={styles.container}>
-      <Pressable style={styles.container}>
-        <View>
-          <Image
-            style={styles.mealImage}
-            source={{ uri: mealDetails.imageUrl }}
-          />
+    <Shadow>
+      <Pressable
+        android_ripple={{ color: "#ccc" }}
+        style={({ pressed }) => (pressed ? styles.buttonPressed : null)}
+      >
+        <View style={styles.innerContainer}>
+          <View>
+            <Image style={styles.mealImage} source={{ uri: imageUrl }} />
+            <Text style={styles.mealTitle}>{title}</Text>
+          </View>
+
+          <View style={styles.detailsContainer}>
+            <Text style={styles.detailsText}>{duration} min</Text>
+            <Text style={styles.detailsText}>
+              {affordability.toUpperCase()}
+            </Text>
+            <Text style={styles.detailsText}>{complexity.toUpperCase()}</Text>
+          </View>
         </View>
-        <Text style={styles.mealTitle}>{mealDetails.title}</Text>
       </Pressable>
-
-      <Text>{mealDetails.affordability}</Text>
-      <Text>{mealDetails.duration} min</Text>
-
-      {/* <FlatList
-        data={mealDetails.ingredients}
-        keyExtractor={(item, index) => item}
-        renderItem={(itemData) => (
-          <Text key={itemData.item}>{itemData.item}</Text>
-        )}
-      /> */}
-    </View>
+    </Shadow>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+  innerContainer: {
+    borderRadius: 8,
+    overflow: "hidden",
   },
   mealTitle: {
     fontWeight: "bold",
     fontSize: 18,
     textAlign: "center",
+    margin: 8,
   },
   mealImage: {
-    // flex: 1,
     height: 200,
-    width: 300,
-    borderRadius: 12,
-    marginVertical: 20,
+    width: "100%",
+  },
+  detailsContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 8,
+  },
+  detailsText: {
+    marginHorizontal: 15,
+    fontSize: 13,
+  },
+  buttonPressed: {
+    opacity: 0.6,
   },
 })

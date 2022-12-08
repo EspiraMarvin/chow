@@ -8,7 +8,7 @@ export default function CategoriesScreen({ navigation }) {
       /*console.log(
             `${itemData.item.title} ${itemData.item.id} ${itemData.item.color} pressed`
           )*/
-      navigation.navigate("Meals Overview", {
+      navigation.navigate("MealsOverview", {
         categoryId: itemData.item.id,
       })
     }

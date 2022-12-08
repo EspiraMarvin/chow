@@ -18,9 +18,14 @@ export default function App() {
             name="MealsCategories"
             component={CategoriesScreen}
             options={{
-              title: "Easy Meal Prep with recipes",
+              title: "All Categories",
               animation: "slide_from_left",
-              headerTitleStyle: { color: "white" },
+              headerTintColor: "white",
+              headerTitleStyle: {
+                color: "white",
+                fontWeight: "bold",
+              },
+              // contentStyle: { backgroundColor: "#351401" },
               headerBackground: () => (
                 <ImageBackground
                   style={[StyleSheet.absoluteFill, { opacity: 0.3 }]}
@@ -36,7 +41,10 @@ export default function App() {
               title: "Recipe",
               animation: "slide_from_right",
               headerTintColor: "white",
-              headerTitleStyle: { color: "white" },
+              headerTitleStyle: {
+                color: "white",
+                fontWeight: "bold",
+              },
               headerBackground: () => (
                 <ImageBackground
                   style={[StyleSheet.absoluteFill, { opacity: 0.3 }]}

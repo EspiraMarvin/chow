@@ -1,13 +1,12 @@
 import { CATEGORIES } from "../data/dummy-data"
 import { FlatList } from "react-native"
+
 import CategoryGridTile from "../components/CategoryGridTile"
+import Gradient from "../components/ui/Gradient"
 
 export default function CategoriesScreen({ navigation }) {
   function renderCategoryItem(itemData) {
     function onPressHandler() {
-      /*console.log(
-            `${itemData.item.title} ${itemData.item.id} ${itemData.item.color} pressed`
-          )*/
       navigation.navigate("MealsOverview", {
         categoryId: itemData.item.id,
       })
@@ -23,11 +22,13 @@ export default function CategoriesScreen({ navigation }) {
   }
 
   return (
-    <FlatList
-      data={CATEGORIES}
-      keyExtractor={(item) => item.id}
-      renderItem={renderCategoryItem}
-      numColumns={2}
-    />
+    <Gradient>
+      <FlatList
+        data={CATEGORIES}
+        keyExtractor={(item) => item.id}
+        renderItem={renderCategoryItem}
+        numColumns={2}
+      />
+    </Gradient>
   )
 }

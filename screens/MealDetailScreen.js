@@ -17,8 +17,6 @@ export default function MealDetailsScreen({ route, navigation }) {
   const [details, setDetails] = useState({})
 
   const mealDetails = MEALS.find((meal) => meal.id === mealId)
-  //   setDe.tails(mealDetails)
-  //   console.log(" mealDetails typoef", typeof mealDetails)
 
   useLayoutEffect(() => {
     const mealTitle = MEALS.find((meal) => meal.id === mealId).title

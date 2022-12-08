@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack"
 
 import CategoriesScreen from "./screens/CategoriesScreen"
 import MealsOverViewScreen from "./screens/MealsOverViewScreen"
-import MealDetailsScreen from "./screens/MealDetailsScreen"
+import MealDetailScreen from "./screens/MealDetailScreen"
 
 const Stack = createNativeStackNavigator()
 
@@ -40,7 +40,7 @@ export default function App() {
           <Stack.Screen
             name="MealsOverview"
             component={MealsOverViewScreen}
-            // you can get params via otoins too
+            // you can get params via options too
             // options={({ route, navigation }) => {
             //   const catId = route.params.categoryId
             //   return {
@@ -48,7 +48,7 @@ export default function App() {
             //   }
             // }}
           />
-          <Stack.Screen name="MealDetails" component={MealDetailsScreen} />
+          <Stack.Screen name="MealDetail" component={MealDetailScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </>

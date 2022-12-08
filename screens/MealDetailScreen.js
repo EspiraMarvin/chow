@@ -1,5 +1,13 @@
 import { useLayoutEffect } from "react"
-import { Text, StyleSheet, View, Image, ScrollView } from "react-native"
+import {
+  Text,
+  StyleSheet,
+  View,
+  Image,
+  ScrollView,
+  Button,
+  Alert,
+} from "react-native"
 import Shadow from "../components/ui/Shadow"
 import { MEALS } from "../data/dummy-data"
 import Gradient from "../components/ui/Gradient"
@@ -12,13 +20,20 @@ export default function MealDetailsScreen({ route, navigation }) {
 
   const selectedMeal = MEALS.find((meal) => meal.id === mealId)
 
+  function headerBtnHandler() {
+    // console.log("hahahhah")
+  }
+
   useLayoutEffect(() => {
     const mealTitle = MEALS.find((meal) => meal.id === mealId).title
     navigation.setOptions({
       title: mealTitle,
       animation: "slide_from_right",
+      // headerRight: () => {
+      // return <Button title="Tap me !" onPress={headerBtnHandler} />
+      // },
     })
-  }, [mealId, navigation])
+  }, [mealId, navigation, headerBtnHandler])
 
   return (
     <ScrollView>
@@ -32,7 +47,7 @@ export default function MealDetailsScreen({ route, navigation }) {
               duration={selectedMeal.duration}
               affordability={selectedMeal.affordability}
               complexity={selectedMeal.complexity}
-              style={{ backgroundColor: "#ccc" }}
+              style={[{ backgroundColor: "#ccc" }, { marginHorizontal: 24 }]}
             />
 
             <SubTitle>Ingredients</SubTitle>

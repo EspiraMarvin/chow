@@ -1,2 +1,2 @@
-### CHOW - Quick Recipe Meal App
+### CHOW - Quick Recipe Meals App
 

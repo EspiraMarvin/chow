@@ -1,8 +1,8 @@
 import { useLayoutEffect } from "react"
-import { View, FlatList, StyleSheet } from "react-native"
-
-import MealItem from "../components/MealItem"
+import { View, FlatList, StyleSheet, ScrollView } from "react-native"
 import Gradient from "../components/ui/Gradient"
+
+import MealItem from "../components/meals/MealItem"
 import { MEALS, CATEGORIES } from "../data/dummy-data"
 
 export default function MealsOverViewScreen({ route, navigation }) {

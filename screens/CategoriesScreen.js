@@ -1,7 +1,7 @@
 import { CATEGORIES } from "../data/dummy-data"
 import { FlatList } from "react-native"
 
-import CategoryGridTile from "../components/CategoryGridTile"
+import CategoryGridTile from "../components/meals/CategoryGridTile"
 import Gradient from "../components/ui/Gradient"
 
 export default function CategoriesScreen({ navigation }) {

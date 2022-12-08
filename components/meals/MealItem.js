@@ -1,6 +1,8 @@
 import { Text, View, Image, StyleSheet, Pressable } from "react-native"
-import Shadow from "./ui/Shadow"
+import Shadow from "../ui/Shadow"
 import { useNavigation } from "@react-navigation/native"
+
+import MealDetails from "./MealDetails"
 
 export default function MealItem({
   id,
@@ -13,7 +15,6 @@ export default function MealItem({
   const navigation = useNavigation()
 
   function onPressHandler(id) {
-    console.log("meal clicked", id)
     navigation.navigate("MealDetail", {
       mealId: id,
     })
@@ -32,13 +33,11 @@ export default function MealItem({
             <Text style={styles.mealTitle}>{title}</Text>
           </View>
 
-          <View style={styles.detailsContainer}>
-            <Text style={styles.detailsText}>{duration} min</Text>
-            <Text style={styles.detailsText}>
-              {affordability.toUpperCase()}
-            </Text>
-            <Text style={styles.detailsText}>{complexity.toUpperCase()}</Text>
-          </View>
+          <MealDetails
+            duration={duration}
+            affordability={affordability}
+            complexity={complexity}
+          />
         </View>
       </Pressable>
     </Shadow>
@@ -60,16 +59,7 @@ const styles = StyleSheet.create({
     height: 200,
     width: "100%",
   },
-  detailsContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 8,
-  },
-  detailsText: {
-    marginHorizontal: 15,
-    fontSize: 13,
-  },
+
   buttonPressed: {
     opacity: 0.6,
   },

@@ -2,17 +2,20 @@ import { Text, View, Image, StyleSheet, Pressable } from "react-native"
 import Shadow from "./ui/Shadow"
 
 export default function MealItem({
+  id,
   title,
   imageUrl,
   duration,
   affordability,
   complexity,
+  onPress,
 }) {
   return (
     <Shadow>
       <Pressable
         android_ripple={{ color: "#ccc" }}
         style={({ pressed }) => (pressed ? styles.buttonPressed : null)}
+        onPress={() => onPress(id)}
       >
         <View style={styles.innerContainer}>
           <View>

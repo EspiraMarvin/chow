@@ -1,19 +1,12 @@
 import { useLayoutEffect } from "react"
-import {
-  Text,
-  StyleSheet,
-  View,
-  Image,
-  ScrollView,
-  Button,
-  Alert,
-} from "react-native"
+import { Text, StyleSheet, View, Image, ScrollView } from "react-native"
 import Shadow from "../components/ui/Shadow"
 import { MEALS } from "../data/dummy-data"
 import Gradient from "../components/ui/Gradient"
 import MealDetails from "../components/meals/MealDetails"
 import SubTitle from "../components/mealDetail/SubTitle"
 import List from "../components/mealDetail/List"
+import IconButton from "../components/ui/IconButton"
 
 export default function MealDetailsScreen({ route, navigation }) {
   const mealId = route.params.mealId
@@ -27,11 +20,13 @@ export default function MealDetailsScreen({ route, navigation }) {
   useLayoutEffect(() => {
     const mealTitle = MEALS.find((meal) => meal.id === mealId).title
     navigation.setOptions({
-      title: mealTitle,
+      title: `About ${mealTitle}`,
       animation: "slide_from_right",
-      // headerRight: () => {
-      // return <Button title="Tap me !" onPress={headerBtnHandler} />
-      // },
+      headerRight: () => {
+        return (
+          <IconButton onPress={headerBtnHandler} icon="star" color="white" />
+        )
+      },
     })
   }, [mealId, navigation, headerBtnHandler])
 
@@ -63,6 +58,7 @@ export default function MealDetailsScreen({ route, navigation }) {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     paddingBottom: 12,
   },
   image: {

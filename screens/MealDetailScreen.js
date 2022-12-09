@@ -6,19 +6,29 @@ import Gradient from "../components/ui/Gradient"
 import MealDetails from "../components/meals/MealDetails"
 import SubTitle from "../components/mealDetail/SubTitle"
 import List from "../components/mealDetail/List"
+import IconButton from "../components/ui/IconButton"
 
 export default function MealDetailsScreen({ route, navigation }) {
   const mealId = route.params.mealId
 
   const selectedMeal = MEALS.find((meal) => meal.id === mealId)
 
+  function headerBtnHandler() {
+    // console.log("hahahhah")
+  }
+
   useLayoutEffect(() => {
     const mealTitle = MEALS.find((meal) => meal.id === mealId).title
     navigation.setOptions({
-      title: mealTitle,
+      title: `About ${mealTitle}`,
       animation: "slide_from_right",
+      headerRight: () => {
+        return (
+          <IconButton onPress={headerBtnHandler} icon="star" color="white" />
+        )
+      },
     })
-  }, [mealId, navigation])
+  }, [mealId, navigation, headerBtnHandler])
 
   return (
     <ScrollView>
@@ -32,7 +42,7 @@ export default function MealDetailsScreen({ route, navigation }) {
               duration={selectedMeal.duration}
               affordability={selectedMeal.affordability}
               complexity={selectedMeal.complexity}
-              style={{ backgroundColor: "#ccc" }}
+              style={[{ backgroundColor: "#ccc" }, { marginHorizontal: 24 }]}
             />
 
             <SubTitle>Ingredients</SubTitle>
@@ -48,6 +58,7 @@ export default function MealDetailsScreen({ route, navigation }) {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     paddingBottom: 12,
   },
   image: {

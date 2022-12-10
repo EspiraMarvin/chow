@@ -1,7 +1,6 @@
 import { useLayoutEffect } from "react"
 import { Text, StyleSheet, View, Image, ScrollView } from "react-native"
 import Shadow from "../components/ui/Shadow"
-import { MEALS } from "../data/dummy-data"
 import Gradient from "../components/ui/Gradient"
 import MealDetails from "../components/mealDetail/MealDetails"
 import SubTitle from "../components/mealDetail/SubTitle"
@@ -15,6 +14,8 @@ import {
 
 export default function MealDetailsScreen({ route, navigation }) {
   const favoriteMealIds = useSelector((state) => state.favoriteMeals.ids)
+  const MEALS = useSelector((state) => state.mealsData.meals)
+
   const dispatch = useDispatch()
 
   const mealId = route.params.mealId

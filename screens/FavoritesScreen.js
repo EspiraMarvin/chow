@@ -1,12 +1,12 @@
 import { Text, StyleSheet, View, Button } from "react-native"
 import Gradient from "../components/ui/Gradient"
-import { MEALS } from "../data/dummy-data"
 import { useSelector } from "react-redux"
 
 import MealsList from "../components/mealsList/MealsList"
 
 export default function CategoriesScreen({ navigation }) {
   const favoriteMealsIds = useSelector((state) => state.favoriteMeals.ids)
+  const MEALS = useSelector((state) => state.mealsData.meals)
 
   const favoriteMeals = MEALS.filter((meal) =>
     favoriteMealsIds.includes(meal.id)

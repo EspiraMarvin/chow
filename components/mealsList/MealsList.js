@@ -1,5 +1,5 @@
-import React from "react"
 import { StyleSheet, View, FlatList } from "react-native"
+
 import MealItem from "./MealItem"
 
 export default function MealsList({ meals }) {

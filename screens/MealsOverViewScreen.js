@@ -1,11 +1,12 @@
 import { useLayoutEffect } from "react"
 import MealsList from "../components/mealsList/MealsList"
 import Gradient from "../components/ui/Gradient"
-
-import { MEALS, CATEGORIES } from "../data/dummy-data"
+import { useSelector } from "react-redux"
 
 export default function MealsOverViewScreen({ route, navigation }) {
   const catId = route.params.categoryId
+  const CATEGORIES = useSelector((state) => state.mealsData.categories)
+  const MEALS = useSelector((state) => state.mealsData.meals)
 
   useLayoutEffect(() => {
     const categoryTitle = CATEGORIES.find(

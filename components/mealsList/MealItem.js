@@ -2,7 +2,7 @@ import { Text, View, Image, StyleSheet, Pressable } from "react-native"
 import Shadow from "../ui/Shadow"
 import { useNavigation } from "@react-navigation/native"
 
-import MealDetails from "./MealDetails"
+import MealDetails from "../mealDetail/MealDetails"
 
 export default function MealItem({
   id,

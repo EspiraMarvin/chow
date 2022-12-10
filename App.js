@@ -1,16 +1,16 @@
 import { StatusBar } from "expo-status-bar"
-import { StyleSheet, ImageBackground, Text } from "react-native"
+import { StyleSheet, ImageBackground } from "react-native"
 import { NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { createDrawerNavigator } from "@react-navigation/drawer"
+import { Ionicons } from "@expo/vector-icons"
+import { Provider } from "react-redux"
+import { store } from "./store/redux/store"
 
 import CategoriesScreen from "./screens/CategoriesScreen"
 import FavoritesScreen from "./screens/FavoritesScreen"
-
 import MealsOverViewScreen from "./screens/MealsOverViewScreen"
 import MealDetailScreen from "./screens/MealDetailScreen"
-
-import { Ionicons } from "@expo/vector-icons"
 
 const Stack = createNativeStackNavigator()
 const Drawer = createDrawerNavigator()
@@ -68,39 +68,41 @@ export default function App() {
   return (
     <>
       <StatusBar style="light" backgroundColor="#070406" />
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerTintColor: "white",
-            headerTitleStyle: {
-              color: "white",
-              fontWeight: "bold",
-            },
-          }}
-        >
-          <Stack.Screen
-            name="All Categories"
-            component={DrawerNavigator}
-            options={{
-              headerShown: false,
+      <Provider store={store}>
+        <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{
+              headerTintColor: "white",
+              headerTitleStyle: {
+                color: "white",
+                fontWeight: "bold",
+              },
             }}
-          />
-          <Stack.Screen
-            name="MealsOverview"
-            component={MealsOverViewScreen}
-            options={{
-              headerBackground: () => displayNavImgBackGround(),
-            }}
-          />
-          <Stack.Screen
-            name="MealDetail"
-            component={MealDetailScreen}
-            options={{
-              headerBackground: () => displayNavImgBackGround(),
-            }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+          >
+            <Stack.Screen
+              name="DrawerNavigator"
+              component={DrawerNavigator}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="MealsOverview"
+              component={MealsOverViewScreen}
+              options={{
+                headerBackground: () => displayNavImgBackGround(),
+              }}
+            />
+            <Stack.Screen
+              name="MealDetail"
+              component={MealDetailScreen}
+              options={{
+                headerBackground: () => displayNavImgBackGround(),
+              }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </Provider>
     </>
   )
 }

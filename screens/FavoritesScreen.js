@@ -1,26 +1,16 @@
-import { useContext } from "react"
 import { Text, StyleSheet, View, Button } from "react-native"
 import Gradient from "../components/ui/Gradient"
-import { FavoritesContext } from "../store/context/favorites-context"
 import { MEALS } from "../data/dummy-data"
+import { useSelector } from "react-redux"
 
 import MealsList from "../components/mealsList/MealsList"
 
 export default function CategoriesScreen({ navigation }) {
-  const favoriteMealsCtx = useContext(FavoritesContext)
-
-  const favoriteMealsIds = favoriteMealsCtx.ids
+  const favoriteMealsIds = useSelector((state) => state.favoriteMeals.ids)
 
   const favoriteMeals = MEALS.filter((meal) =>
     favoriteMealsIds.includes(meal.id)
   )
-
-  //or
-  /*
-    const favoriteMealss = favoriteMealsIds.map((id) =>
-    MEALS.find((meal) => meal.id === id)
-  )
-  */
 
   function goToList() {
     navigation.navigate("Categories")

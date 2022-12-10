@@ -18,7 +18,7 @@
 <img src="./screenshots/screen.jpeg" alt="" style="width: 100%">
 </td>
 <td>
-<img src="./screenshots/screen.jpeg" alt="" style="width: 100%">
+<img src="./screenshots/screen1.jpeg" alt="" style="width: 100%">
 </td>
 </tr>
 </table>
@@ -45,7 +45,7 @@
 </tr>
 <tr>
 <td>
-<img src="./screenshots/screen5.jpeg" alt="" style="width: 100%">
+<img src="./screenshots/screen2.jpeg" alt="" style="width: 100%">
 </td>
 </tr>
 </table>

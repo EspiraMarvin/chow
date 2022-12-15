@@ -1,6 +1,8 @@
 ## CHOW - Quick Recipe Meals App
 
+[Android build link](https://expo.dev/accounts/marvinespira/projects/myRecipeMaestro/builds/3149369e-f036-4bc5-91b8-663461ba55a1)
 
+[Ios build link](https://expo.dev/artifacts/eas/3XPfMirNXL2pKx863yYyBV.tar.gz)
 
 ### Technologies Used
 
